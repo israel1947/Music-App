@@ -1,0 +1,9 @@
+.container-form{
+    display: grid;
+    place-content: center center;
+    height: 60vh;
+
+    .alert-mensage{
+        color: var(--ion-color-danger)
+    }
+}

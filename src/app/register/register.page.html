@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content>
+  <figure class="ion-text-center ion-padding">
+    <img src="/assets/img/logo.png">
+  </figure>
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
 
+ <div class="container-form">
+     <div class="nombre-input ion-padding-horizontal">
+      <ion-item class="ion-padding-horizontal">
+        <ion-label position="floating">Nombre:</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+      <span class="alert-mensage"  *ngIf="campoInvalido('nombre')">
+       {{nameErrorMsg}}
+       </span>
+   </div>
+    <div class="email-input ion-padding-horizontal">
+      <ion-item class="ion-padding-horizontal">
+        <ion-label position="floating">Email:</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <span class="alert-mensage"  *ngIf="campoInvalido('email')">
+      {{emailErrorMsg}}
+      </span>
+   </div>
+    <div class="password-input ion-padding-horizontal">
+         <ion-item class="ion-padding-horizontal">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password"  formControlName="password"></ion-input>
+         </ion-item>
+         <span class="alert-mensage"  *ngIf="campoInvalido('password')">
+           La contraseña debe ser mayor a 6 caracteres
+         </span>
+    </div>
+
+       <!--<div class="error-login">
+          {{errorMesage}}
+        </div>--> 
+        
+        <ion-button class="ion-margin" 
+                    color="success"  
+                    expand="block"
+                    [disabled]=""
+                    type="submit">
+                    Iniciar Sesión
+         </ion-button>
+      </div>
+  </form>
 </ion-content>
+
