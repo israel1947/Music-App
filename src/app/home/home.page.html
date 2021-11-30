@@ -1,5 +1,31 @@
 
 
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-menu-button>
+                <ion-icon name="menu-outline"></ion-icon>
+            </ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
 <ion-content>
- <h1>home vacio</h1>
+ <h1>Albums</h1>
+ <ion-slides [options]="slideOps" *ngIf="albums.length">
+     <ion-slide *ngFor="let album of albums">
+         <ion-avatar>
+             <img [src]="album.images[0].url">
+             <span>{{album.name}}</span>
+         </ion-avatar>
+     </ion-slide>
+ </ion-slides>
+ <h1>Canciones</h1>
+ <ion-slides [options]="slideOps" *ngIf="songs.length">
+     <ion-slide *ngFor="let song of songs">
+         <ion-avatar>
+             <img [src]="song.images[0].url">
+             <span>{{song.name}}</span>
+         </ion-avatar>
+     </ion-slide>
+ </ion-slides>
 </ion-content>

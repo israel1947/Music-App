@@ -54,7 +54,7 @@ export class LoginPage implements OnInit {
    //si el inicio de sesión es correcto el usuario sera redirigido al home
    this.authServices.loginUser(credenciales).then(resp=>{
     this.errorMesage= '';
-    this.navCtrl.navigateForward('/home');
+    this.navCtrl.navigateForward("/menu/home");
     this.storage.create();
     this.storage.set('isUserLogged',true);
 

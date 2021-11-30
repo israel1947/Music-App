@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private storage:Storage) { }
 
   loginUser(credenciales){
     return new Promise((accept, reject)=>{
@@ -15,5 +16,11 @@ export class AuthService {
         reject("inicio de sesión fallido");//en caso de que el usuario o passwor sean erroneas, arrojara el error en pantalla
       }
     });
+  }
+
+  registrarUser(userData:any){//almacenar el usuario en el Storage
+    userData.password = btoa(userData.password);
+    this.storage.create();
+    return this.storage.set("user",userData);
   }
 }

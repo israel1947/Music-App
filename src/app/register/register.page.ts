@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,9 @@ export class RegisterPage implements OnInit {
     password:['',[Validators.required, Validators.minLength(6)]],
   });
 
-  constructor( private  formBuilder:FormBuilder,) { }
+  constructor( private  formBuilder:FormBuilder,
+               private  router:Router,
+               private  authService:AuthService) { }
 
   ngOnInit() {
   }
@@ -49,6 +53,17 @@ export class RegisterPage implements OnInit {
     return '';
   }
 
-  registerUser(){}
+  //registrar usuario y redirigir hasta login
+  registerUser(userData:any){
+    this.authService.registrarUser(userData).then(()=>{
+      this.GoToLogin();
+    });
+    console.log(userData);
+  }
+
+  //volver hasta el componente de login presionando el boton back
+  GoToLogin(){
+    this.router.navigate(['/login'], { skipLocationChange: true });
+  }
 
 }

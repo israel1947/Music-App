@@ -1,9 +1,19 @@
+<!--ion-toolbar permite añadior ya sea botones, titulos o lo que desee den la parte superior de la pagina-->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="GoToLogin()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <figure class="ion-text-center ion-padding">
     <img src="/assets/img/logo.png">
   </figure>
-  <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+  <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)">
 
  <div class="container-form">
      <div class="nombre-input ion-padding-horizontal">

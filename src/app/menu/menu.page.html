@@ -1,0 +1,36 @@
+
+<ion-split-pane  contentId="content">
+  <ion-menu contentId="content" side="end">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menú</ion-title>
+        <ion-buttons>
+          <ion-button  (click)="closeMenu()">
+            <ion-icon name="close-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list >
+        <ion-item>
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          Home
+        </ion-item>
+        <ion-item> 
+          <ion-icon name="bicycle-outline" slot="start"></ion-icon>
+          Deporte
+        </ion-item>
+        <ion-item>
+          <ion-icon name="settings-outline" slot="start"></ion-icon>
+          configuraciones
+        </ion-item>
+        <ion-item (click)="logout()">
+          <ion-icon name="log-in-outline" slot="start"></ion-icon>
+          Cerrar Sesión
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content" main></ion-router-outlet>
+</ion-split-pane>
