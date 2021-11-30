@@ -10,10 +10,19 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <h1>Artistas</h1>
+ <ion-slides [options]="slideOps" *ngIf="artistas.length">
+     <ion-slide *ngFor="let artista of artistas">
+         <ion-avatar (click)="showSongs(artista)">
+             <img [src]="artista.images[0].url">
+             <span>{{artista.name}}</span>
+         </ion-avatar>
+     </ion-slide>
+ </ion-slides>
  <h1>Albums</h1>
- <ion-slides [options]="slideOps" *ngIf="albums.length">
+ <ion-slides  [options]="slideOps" *ngIf="albums.length">
      <ion-slide *ngFor="let album of albums">
-         <ion-avatar>
+         <ion-avatar class="square-avatar">
              <img [src]="album.images[0].url">
              <span>{{album.name}}</span>
          </ion-avatar>
@@ -22,7 +31,7 @@
  <h1>Canciones</h1>
  <ion-slides [options]="slideOps" *ngIf="songs.length">
      <ion-slide *ngFor="let song of songs">
-         <ion-avatar>
+         <ion-avatar class="square-avatar">
              <img [src]="song.images[0].url">
              <span>{{song.name}}</span>
          </ion-avatar>

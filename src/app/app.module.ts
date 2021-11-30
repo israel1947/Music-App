@@ -8,6 +8,7 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SongsModalPageModule } from './songs-modal/songs-modal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     HttpClientModule,
+    SongsModalPageModule,
   ],
 
   providers: [
