@@ -24,3 +24,12 @@ export class AuthService {
     return this.storage.set("user",userData);
   }
 }
+
+/*const user = await this.storage.get("user");//recibe las credenciales registradas desde registerform 
+return new Promise((accept, reject)=>{
+  if(user.email == credenciales.email && user.password == btoa(credenciales.password) ){
+    accept("login correcto");
+  }else{
+    reject("inicio de sesión fallido");//en caso de que el usuario o password sean erroneas, arrojara el error en pantalla
+  }
+});*/

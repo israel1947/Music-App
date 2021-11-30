@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MusicService } from '../services/music.service';
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
@@ -8,7 +8,7 @@ import { SongsModalPage } from '../songs-modal/songs-modal.page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
   slideOps={
     loop: false,
@@ -19,15 +19,22 @@ export class HomePage implements OnInit {
     speed: 400,
   };
   
-  artistas=[];
+  artistas:any=[];
   songs:any=[];
-  albums:any=[]
+  albums:any=[];
+  song = {
+    playing:true,
+    name:[],
+    preview_url:'',
+    
+ };
+ currentSong:any=[];
+ newTime;
 
   constructor(private musicService:MusicService,
-              private modalController:ModalController) {}
+              private modalController:ModalController,) {}
 
-  ngOnInit():void {
-  }
+  
 
   ionViewDidEnter(){
     this.musicService.getNewReleases().then(newRelease=>{
@@ -35,7 +42,6 @@ export class HomePage implements OnInit {
       console.log(this.artistas);
       this.songs=newRelease.albums.items.filter(e=>e.album_type=="single");
       this.albums=newRelease.albums.items.filter(e=>e.album_type=="album");
-      console.log(this.artistas);
     })
   }
 
@@ -47,11 +53,32 @@ export class HomePage implements OnInit {
     const modal =await this.modalController.create({
       component: SongsModalPage,
       componentProps:{
-        songs:songs.tracks,
-        artista:artista.name,
+        songs:songs.tracks,//mostrara las canciones del artista en cuestion es decir al que de click
+        artista:artista.name,//mostrara el nombre del artista seleccionado para asi mostrar sus respectivas canciones
+       
       }
     });
-    await modal.present();//permite hacer la redireccion al hacer click en cualquier artista
-  }
+    modal.onDidDismiss().then(dataReturned=>{//onDidDismiss optiene los datos exactos que retorna el modal
+      this.song=dataReturned.data;
+    });
+    return await modal.present();//permite hacer la redireccion al hacer click en cualquier artista
+   }
+
+   play(){//evento para hacer play a la cancion seleccionada
+     this.currentSong = new Audio(this.song.preview_url);
+     this.currentSong.play();
+     //escuchar cuado cambia la propiedad currentSong (barra de progreso de la cancion seleccionada)
+     this.currentSong.addEventListener('timeupdate',()=>{
+       //hacer que la barra de progreso corresponda con el tiempo de la cacion que esta sonando
+       this.newTime = ( 1 / this.currentSong.duration ) * this.currentSong.currentTime;
+     })
+     this.song.playing=true;
+    }
+    
+    pause(){//evento para hacer pausa a la cancion seleccionada
+    this.currentSong.pause()
+    this.song.playing=false;
+   }
 }
+
 

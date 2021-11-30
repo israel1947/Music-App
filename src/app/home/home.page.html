@@ -38,3 +38,45 @@
      </ion-slide>
  </ion-slides>
 </ion-content>
+<ion-footer>
+    <ion-grid>
+        <ion-row>
+            <ion-col class="ion-text-start">{{currentSong.duration || "0:00"}}</ion-col>
+            <ion-col class="ion-text-end">  {{currentSong.currentTime  || "0:00"}}</ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-progress-bar color="primary" [value]="newTime"></ion-progress-bar>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                    <ion-icon name="heart-outline"></ion-icon>
+            </ion-col>
+            <ion-col>
+                <ion-icon name="play" 
+                          (click)="play()" 
+                          *ngIf="!song.playing">
+                </ion-icon>
+                <ion-icon name="pause" 
+                          (click)="pause()" 
+                          *ngIf="song.playing">
+                </ion-icon>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-text-center prueba">
+            <ion-col>
+                <ion-text color="medium">
+                  <strong> {{ song.name || 'Reproductor vacío'}}</strong>
+                </ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-footer>
+
+<!--<ion-text color="danger"  
+*ngIf="!song.name">
+<h2>aqui aparecera la cancion</h2>
+</ion-text>
+<ion-text color="primary"
+ *ngIf="song.name">
+<h2>{{song.name}}</h2>
+</ion-text>-->

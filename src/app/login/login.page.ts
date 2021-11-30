@@ -46,9 +46,6 @@ export class LoginPage implements OnInit {
   }
 
   errorMesage:string="";
-
-
-
   loginUser(credenciales:any){
 
    //si el inicio de sesión es correcto el usuario sera redirigido al home
