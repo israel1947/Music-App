@@ -79,6 +79,28 @@ export class HomePage {
     this.currentSong.pause()
     this.song.playing=false;
    }
+
+   //recibir tiempo y en caso de no recibirlo, el valor por default sera 0.00
+   parseTime(time='0.00'){
+     if(time){
+       //tiempo en el interiror convertido a string para mostra el tiempo asi:"0:00"
+       const partTime= parseInt(time.toString().split('.')[0],10)
+       let minutos = Math.floor(partTime/60).toString();
+
+       //preguntar si e  numro a la izquierda(minutos) es de 1 o dos digitos
+       if(minutos.length===1){
+         minutos='0'+ minutos;
+       }
+
+       //numero en la pate derecha
+       let segundos = (partTime%60).toString();
+       //preguntar si el  numro a la derecha(segundos) es de 1 digito, entonces le retornara un cero adelante
+       if(segundos.length===1){
+        segundos='0'+ segundos;
+      }
+      return minutos + ':' +segundos;
+     }
+   }
 }
 
 
