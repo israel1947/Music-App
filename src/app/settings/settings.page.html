@@ -6,6 +6,11 @@
       </ion-button>
     </ion-buttons>
     <ion-title>settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button>
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -14,5 +19,20 @@
     <img [src]="userImage" *ngIf="!foto">
     <img [src]="foto" *ngIf="foto">
   </ion-avatar>
-  <h1 class="ion-text-center">nombre de la persona</h1>
+  <h1 class="ion-text-center">Marilyn Morrison</h1>
+  <h3 class="ion-text-center">marilyn.morrison@example.com</h3>
+  <ion-card>
+    <ion-grid class=" ion-text-center ion-align-items-center">
+      <ion-row class="row-header">
+        <ion-col>140</ion-col>
+        <ion-col>5k</ion-col>
+        <ion-col>500</ion-col>
+      </ion-row>
+      <ion-row  class=" ion-text-center ion-align-items-center">
+        <ion-col>Artistas</ion-col>
+        <ion-col>Seguidores</ion-col>
+        <ion-col>Canciones </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

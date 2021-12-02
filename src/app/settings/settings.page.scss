@@ -17,3 +17,18 @@
     top: -50px;
     left: 65px;
 }
+
+h3{
+    font-size: 16px;
+}
+
+.row-header{
+    font-size:28px;
+}
+
+ion-col{
+    border-right: 1px solid;
+    &:last-child{
+        border:none
+    }
+}
