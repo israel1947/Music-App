@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{artista + '-Top track'}}</ion-title>
+    <ion-title>{{artist_or_album  + '-Top track'}}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="selectSong('')">
+      <ion-button (click)="selectAlbum(songs)">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -12,7 +12,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let song of songs; index as i"
-               (click)="selectSong(song)">
+               (click)="selectAlbum(song)">
       <ion-avatar>
         {{i+1}}<!--empezar la enumeracion de las canciones desde la posicion 1-->
       </ion-avatar>

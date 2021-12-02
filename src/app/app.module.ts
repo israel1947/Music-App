@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SongsModalPageModule } from './songs-modal/songs-modal.module';
+import { AlbumModalPageModule } from './album-modal/album-modal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { SongsModalPageModule } from './songs-modal/songs-modal.module';
     IonicStorageModule.forRoot(),
     HttpClientModule,
     SongsModalPageModule,
+    AlbumModalPageModule,
   ],
 
   providers: [

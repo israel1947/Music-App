@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="GoToBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-avatar class="flex" (click)="tomarFoto()">
+    <img [src]="userImage" *ngIf="!foto">
+    <img [src]="foto" *ngIf="foto">
+  </ion-avatar>
+  <h1 class="ion-text-center">nombre de la persona</h1>
+</ion-content>

@@ -21,8 +21,8 @@
           <ion-icon name="bicycle-outline" slot="start"></ion-icon>
           Deporte
         </ion-item>
-        <ion-item>
-          <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-item (click)="goToSettings()">
+          <ion-icon name="settings-outline" slot="start" ></ion-icon>
           configuraciones
         </ion-item>
         <ion-item (click)="logout()">

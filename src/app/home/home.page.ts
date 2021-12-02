@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MusicService } from '../services/music.service';
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
+import { AlbumModalPage } from '../album-modal/album-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomePage {
     preview_url:'',
     
  };
+
  currentSong:any=[];
  newTime;
 
@@ -39,7 +41,7 @@ export class HomePage {
   ionViewDidEnter(){
     this.musicService.getNewReleases().then(newRelease=>{
       this.artistas=this.musicService.getArtistas();
-      console.log(this.artistas);
+     // console.log(this.artistas);
       this.songs=newRelease.albums.items.filter(e=>e.album_type=="single");
       this.albums=newRelease.albums.items.filter(e=>e.album_type=="album");
     })
@@ -63,6 +65,31 @@ export class HomePage {
     });
     return await modal.present();//permite hacer la redireccion al hacer click en cualquier artista
    }
+
+   async showAlbums(album){
+     const songs = await this.musicService.getAlbumTracks(album.id);
+     const modal = await this.modalController.create({
+       component:AlbumModalPage,
+       componentProps:{
+        songs:songs.items,
+        artist_or_album:album.name,
+       }
+     });
+     
+     modal.onDidDismiss().then(dataReturned=>{
+       this.songs=dataReturned.data;
+     });
+     return await modal.present();
+     
+   }
+
+
+
+
+
+
+
+
 
    play(){//evento para hacer play a la cancion seleccionada
      this.currentSong = new Audio(this.song.preview_url);

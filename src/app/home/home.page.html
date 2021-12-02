@@ -9,7 +9,7 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-padding">
     <h1>Artistas</h1>
  <ion-slides [options]="slideOps" *ngIf="artistas.length">
      <ion-slide *ngFor="let artista of artistas">
@@ -22,7 +22,7 @@
  <h1>Álbums</h1>
  <ion-slides  [options]="slideOps" *ngIf="albums.length">
      <ion-slide *ngFor="let album of albums">
-         <ion-avatar class="square-avatar">
+         <ion-avatar class="square-avatar" (click)="showAlbums(album)">
              <img [src]="album.images[0].url">
              <span>{{album.name}}</span>
          </ion-avatar>
@@ -40,26 +40,31 @@
 </ion-content>
 <ion-footer>
     <ion-grid>
-        <ion-row>
+        <ion-row *ngIf="currentSong">
             <ion-col class="ion-text-start">{{parseTime(currentSong.duration) || "0:00"}}</ion-col>
             <ion-col class="ion-text-end">  {{parseTime(currentSong.currentTime)  || "0:00"}}</ion-col>
         </ion-row>
     </ion-grid>
     <ion-progress-bar color="primary" [value]="newTime"></ion-progress-bar>
     <ion-grid>
-        <ion-row>
+        <ion-row class="ion-text-center">
             <ion-col>
-                    <ion-icon name="heart-outline"></ion-icon>
+                    <ion-icon name="heart-outline" size="4"></ion-icon>
             </ion-col>
             <ion-col>
                 <ion-icon name="play" 
                           (click)="play()" 
-                          *ngIf="!song.playing">
+                          *ngIf="!song.playing"
+                          size="4">
                 </ion-icon>
-                <ion-icon name="pause" 
+                <ion-icon  name="pause" 
                           (click)="pause()" 
-                          *ngIf="song.playing">
+                          *ngIf="song.playing"
+                          size="4">
                 </ion-icon>
+            </ion-col>
+            <ion-col size="4">
+                <ion-icon name="share-outline"></ion-icon>
             </ion-col>
         </ion-row>
         <ion-row class="ion-text-center prueba">

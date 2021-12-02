@@ -1,0 +1,19 @@
+
+
+.flex{
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
+
+.flex::after{
+    content: "+";
+    color: var(--ion-color-secondary-shade);
+    font-size: 50px;
+    font-weight: 900;
+    z-index: 999;
+    position: relative;
+    top: -50px;
+    left: 65px;
+}

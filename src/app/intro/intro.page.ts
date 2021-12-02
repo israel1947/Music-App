@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: './intro.page.html',
   styleUrls: ['./intro.page.scss'],
 })
-export class IntroPage implements OnInit {
+export class IntroPage {
 
   slideOpts = {
     on: {
@@ -101,12 +101,9 @@ export class IntroPage implements OnInit {
 
   finish(){
     //mostrar los slides solo la primera vez, gracias a que queda guardado en el Ionic storage
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
     this.storage.create();
     this.storage.set('isIntroShowed',true);
-  }
-
-  ngOnInit() {
   }
 
 }

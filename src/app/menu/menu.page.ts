@@ -26,4 +26,9 @@ export class MenuPage implements OnInit {
     this.storage.remove('isUserLogged');//elimina las credenciales del usuario del storage
     this.navControler.navigateRoot('/login');
   }
+
+  goToSettings(){
+    this.navControler.navigateRoot('/menu/settings');
+    this.menuControler.close();
+  }
 }
