@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sports</ion-title>
+    <ion-buttons>
+      <ion-button (click)="GoToBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-button>
+        </ion-buttons>
+         <ion-title>Sports</ion-title>
+         <ion-buttons slot="end">
+         <ion-menu-button>
+        <ion-icon name="menu-outline"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <agm-map></agm-map>
 </ion-content>

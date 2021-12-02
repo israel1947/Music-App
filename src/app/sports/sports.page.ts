@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sports',
   templateUrl: './sports.page.html',
   styleUrls: ['./sports.page.scss'],
 })
-export class SportsPage implements OnInit {
+export class SportsPage  {
 
-  constructor() { }
+  constructor( private router:Router) { }
 
-  ngOnInit() {
+  GoToBack(){
+    this.router.navigate(['./menu/home'], { skipLocationChange: true });
   }
 
 }

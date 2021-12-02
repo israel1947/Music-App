@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
+import { AgmCoreModule } from '@agm/core';
 
 import { SportsPageRoutingModule } from './sports-routing.module';
 
@@ -13,7 +13,8 @@ import { SportsPage } from './sports.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SportsPageRoutingModule
+    SportsPageRoutingModule,
+    AgmCoreModule
   ],
   declarations: [SportsPage]
 })

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { AgmCoreModule } from '@agm/core';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
@@ -10,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SongsModalPageModule } from './songs-modal/songs-modal.module';
 import { AlbumModalPageModule } from './album-modal/album-modal.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +26,7 @@ import { AlbumModalPageModule } from './album-modal/album-modal.module';
     HttpClientModule,
     SongsModalPageModule,
     AlbumModalPageModule,
+    AgmCoreModule.forRoot({apiKey:environment.MapKeyApi})
   ],
 
   providers: [

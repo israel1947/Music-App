@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^3.0.0-beta.0",
     "@angular/common": "~12.1.1",
     "@angular/core": "~12.1.1",
     "@angular/forms": "~12.1.1",
@@ -27,6 +28,7 @@
     "@ionic/pwa-elements": "^3.0.2",
     "@ionic/storage": "3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "@types/googlemaps": "^3.43.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
