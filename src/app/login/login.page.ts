@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
-
+const PrimaryWhite = '#42d77d';
+const SecondaryGrey = '#ccc';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -12,6 +14,14 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage implements OnInit {
 
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public primaryColour = PrimaryWhite;
+  public secondaryColour = SecondaryGrey;
+  public coloursEnabled = false;
+  public loadingTemplate: TemplateRef<any> | undefined;
+  public config = { animationType: ngxLoadingAnimationTypes.none, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' };
+  public loading = false;
+  
   public emailPattern:string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
 
 
@@ -46,8 +56,9 @@ export class LoginPage implements OnInit {
   }
 
   errorMesage:string="";
-  loginUser(credenciales:any){
 
+   /*loginUser(credenciales:any){
+    this.loading = true;
    //si el inicio de sesión es correcto el usuario sera redirigido al home
    this.authServices.loginUser(credenciales).then(resp=>{
     this.errorMesage= '';
@@ -57,7 +68,24 @@ export class LoginPage implements OnInit {
 
    }).catch(error=>{//caso contrario arrojara un error de login en pantalla
      this.errorMesage=error;
+     this.loading = false;
    });
+  }*/
+  
+  async loginUser(credenciales:any){
+    try {
+      this.loading = true;
+      this.authServices.loginUser(credenciales).then(resp=>{
+        this.errorMesage= '';
+        this.navCtrl.navigateForward("/menu/home");
+        this.storage.create();
+        this.storage.set('isUserLogged',true);
+     })
+     
+    } catch (error) {
+      this.errorMesage=error;
+     this.loading = false;
+    }
   }
 
 }

@@ -8,7 +8,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
-
+  
   constructor( private menuControler:MenuController,
                private navControler:NavController,
                private storage:Storage) { }

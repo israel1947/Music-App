@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule),
-    //canActivate:[IntroGuard,LoginGuard]
+    canActivate:[IntroGuard,LoginGuard]
   },
   {
     path: 'songs-modal',
@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'album-modal',
     loadChildren: () => import('./album-modal/album-modal.module').then( m => m.AlbumModalPageModule)
-  },
+  }
   
   
 ];

@@ -5,16 +5,26 @@
         <ion-buttons slot="end">
             <ion-menu-button>
                 <ion-icon name="menu-outline"></ion-icon>
-            </ion-menu-button>
+            </ion-menu-button> 
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
     <ion-row>
         <ion-col>
-            <ion-searchbar showCancelButton="focus"></ion-searchbar>
+            <ion-searchbar showCancelButton="focus"
+                            animated
+                            spellcheck="true"
+                            (ionChange)="buscar($event)">
+                            
+            </ion-searchbar>
         </ion-col>
     </ion-row>
+    <ion-list>
+        <ion-item *ngFor="let cancion of canciones ">
+            {{cancion.name}}
+        </ion-item>
+    </ion-list>
     <h1>Artistas</h1>
  <ion-slides [options]="slideOps" *ngIf="artistas.length">
      <ion-slide *ngFor="let artista of artistas">

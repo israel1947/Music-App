@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MusicService } from '../services/music.service';
 import { SongsModalPage } from '../songs-modal/songs-modal.page';
@@ -9,7 +9,9 @@ import { AlbumModalPage } from '../album-modal/album-modal.page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+
+  
 
   slideOps={
     loop: false,
@@ -120,6 +122,22 @@ export class HomePage {
       return minutos + ':' +segundos;
      }
    }
-}
+
+   canciones:any[]=[];
+   termino:string='';
+
+   buscar(event){
+     //console.log(event);
+     this.termino = event.detail.value;
+   }
+
+   ngOnInit(){
+     this.musicService.searhcTracks()
+        .subscribe(canciones=>{
+          console.log(canciones);
+          this.canciones=canciones
+        })
+   }
+} 
 
 

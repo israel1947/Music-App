@@ -6,6 +6,8 @@ import { AgmCoreModule } from '@agm/core';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+import { NgxLoadingModule } from 'ngx-loading';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +28,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     SongsModalPageModule,
     AlbumModalPageModule,
-    AgmCoreModule.forRoot({apiKey:environment.MapKeyApi})
+    AgmCoreModule.forRoot({apiKey:environment.MapKeyApi}),
+    NgxLoadingModule.forRoot({}),
   ],
 
   providers: [

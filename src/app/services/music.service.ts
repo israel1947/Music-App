@@ -1,4 +1,5 @@
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import   dataArtista  from "./artista.json";
 
@@ -8,7 +9,7 @@ import   dataArtista  from "./artista.json";
 })
 export class MusicService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   getArtistas(){
     return dataArtista.items;
@@ -28,5 +29,9 @@ export class MusicService {
 
   getAlbumTracks(albumId) {
     return fetch( `https://platzi-music-api.herokuapp.com/albums/${albumId}/tracks?country=CO`).then(response => response.json());
+  }
+
+ searhcTracks() {
+    return this.http.get<any[]>( `https://platzi-music-api.herokuapp.com/search?q=&type=track`);
   }
 }
