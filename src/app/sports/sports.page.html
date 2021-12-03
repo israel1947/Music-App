@@ -15,5 +15,24 @@
 </ion-header>
 
 <ion-content>
-  <agm-map></agm-map>
+    <agm-map *ngIf="currentCenter" 
+              [latitude]="currentCenter.lat" 
+              [longitude]="currentCenter.long"
+              [zoom]="zoomByDefault">
+
+    <!--marcador para mostrar la ubicacion de la persona en cuestion-->
+    <agm-marker [latitude]="currentCenter.lat" 
+                [longitude]="currentCenter.long"
+                [iconUrl]="marker">
+     
+    </agm-marker>
+    <!--crear la polilinea para mostrar el recorrido del usuario por el mapa-->
+    <agm-polyline [strokeColor]="'cyan'" *ngIf="coordinates">
+      <agm-polyline-point *ngFor="let coords of coordinates"
+                           [latitude]="coords.lat" 
+                           [longitude]="coords.long">
+      </agm-polyline-point>
+    </agm-polyline>
+   </agm-map>
 </ion-content>
+

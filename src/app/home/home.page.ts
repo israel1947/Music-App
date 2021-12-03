@@ -77,19 +77,11 @@ export class HomePage {
      });
      
      modal.onDidDismiss().then(dataReturned=>{
-       this.songs=dataReturned.data;
+       this.song=dataReturned.data;
      });
      return await modal.present();
      
    }
-
-
-
-
-
-
-
-
 
    play(){//evento para hacer play a la cancion seleccionada
      this.currentSong = new Audio(this.song.preview_url);

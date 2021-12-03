@@ -10,12 +10,17 @@
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+    <ion-row>
+        <ion-col>
+            <ion-searchbar showCancelButton="focus"></ion-searchbar>
+        </ion-col>
+    </ion-row>
     <h1>Artistas</h1>
  <ion-slides [options]="slideOps" *ngIf="artistas.length">
      <ion-slide *ngFor="let artista of artistas">
          <ion-avatar (click)="showSongs(artista)">
              <img [src]="artista.images[0].url">
-             <span>{{artista.name}}</span>
+             <span>{{artista.name}}</span> 
          </ion-avatar>
      </ion-slide>
  </ion-slides>
