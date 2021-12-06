@@ -3,10 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage';
-import { ngxLoadingAnimationTypes } from 'ngx-loading';
+import { LoadingService } from '../services/loading.service';
 
-const PrimaryWhite = '#42d77d';
-const SecondaryGrey = '#ccc';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,13 +13,7 @@ const SecondaryGrey = '#ccc';
 })
 export class LoginPage implements OnInit {
 
-  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
-  public primaryColour = PrimaryWhite;
-  public secondaryColour = SecondaryGrey;
-  public coloursEnabled = false;
-  public loadingTemplate: TemplateRef<any> | undefined;
-  public config = { animationType: ngxLoadingAnimationTypes.none, primaryColour: this.primaryColour, secondaryColour: this.secondaryColour, tertiaryColour: this.primaryColour, backdropBorderRadius: '3px' };
-  public loading = false;
+
   
   public emailPattern:string = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$";
 
@@ -30,10 +23,11 @@ export class LoginPage implements OnInit {
     password:['',[Validators.required, Validators.minLength(6)]],
   });
 
-  constructor(private  formBuilder:FormBuilder,
-              private  authServices:AuthService,
-              private  navCtrl:NavController,
-              private  storage:Storage,) { }
+  constructor( private  formBuilder:FormBuilder,
+               private  authServices:AuthService,
+               private  navCtrl:NavController,
+               private  storage:Storage,
+               public   loadingService:LoadingService ) { }
 
   ngOnInit() {
   }
@@ -57,35 +51,22 @@ export class LoginPage implements OnInit {
 
   errorMesage:string="";
 
-   /*loginUser(credenciales:any){
-    this.loading = true;
-   //si el inicio de sesión es correcto el usuario sera redirigido al home
-   this.authServices.loginUser(credenciales).then(resp=>{
-    this.errorMesage= '';
-    this.navCtrl.navigateForward("/menu/home");
-    this.storage.create();
-    this.storage.set('isUserLogged',true);
-
+   loginUser(credenciales:any){
+     //si el inicio de sesión es correcto el usuario sera redirigido al home
+     this.authServices.loginUser(credenciales).then(resp=>{
+       setTimeout(() => {
+       this.errorMesage= '';
+       this.navCtrl.navigateForward("/menu/home");
+       this.storage.create();
+       this.storage.set('isUserLogged',true);
+     }, 4000);
    }).catch(error=>{//caso contrario arrojara un error de login en pantalla
      this.errorMesage=error;
-     this.loading = false;
    });
-  }*/
-  
-  async loginUser(credenciales:any){
-    try {
-      this.loading = true;
-      this.authServices.loginUser(credenciales).then(resp=>{
-        this.errorMesage= '';
-        this.navCtrl.navigateForward("/menu/home");
-        this.storage.create();
-        this.storage.set('isUserLogged',true);
-     })
-     
-    } catch (error) {
-      this.errorMesage=error;
-     this.loading = false;
-    }
   }
 
+  //spiner automatico al dar click en btn iniciar sesión
+  displayAutoLoader() {
+    this.loadingService.autoLoader();
+  }
 }
