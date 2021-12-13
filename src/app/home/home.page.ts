@@ -9,9 +9,7 @@ import { AlbumModalPage } from '../album-modal/album-modal.page';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
-
-  
+export class HomePage {
 
   slideOps={
     loop: false,
@@ -34,6 +32,7 @@ export class HomePage implements OnInit {
 
  currentSong:any=[];
  newTime;
+ termino:string = '';
 
   constructor(private musicService:MusicService,
               private modalController:ModalController,) {}
@@ -121,22 +120,6 @@ export class HomePage implements OnInit {
       }
       return minutos + ':' +segundos;
      }
-   }
-
-   canciones:any[]=[];
-   termino:string='';
-
-   buscar(event){
-     //console.log(event);
-     this.termino = event.detail.value;
-   }
-
-   ngOnInit(){
-     this.musicService.searhcTracks()
-        .subscribe(canciones=>{
-          console.log(canciones);
-          this.canciones=canciones
-        })
    }
 } 
 

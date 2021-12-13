@@ -31,7 +31,7 @@ export class MusicService {
     return fetch( `https://platzi-music-api.herokuapp.com/albums/${albumId}/tracks?country=CO`).then(response => response.json());
   }
 
- searhcTracks() {
-    return this.http.get<any[]>( `https://platzi-music-api.herokuapp.com/search?q=&type=track`);
+ searhcTracks(termino:string) {
+    return this.http.get<any[]>( `https://platzi-music-api.herokuapp.com/search?q${termino}=&type=track`);
   }
 }

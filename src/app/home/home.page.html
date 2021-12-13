@@ -14,17 +14,11 @@
         <ion-col>
             <ion-searchbar showCancelButton="focus"
                             animated
-                            spellcheck="true"
-                            (ionChange)="buscar($event)">
+                            spellcheck="true">
                             
             </ion-searchbar>
         </ion-col>
     </ion-row>
-    <ion-list>
-        <ion-item *ngFor="let cancion of canciones ">
-            {{cancion.name}}
-        </ion-item>
-    </ion-list>
     <h1>Artistas</h1>
  <ion-slides [options]="slideOps" *ngIf="artistas.length">
      <ion-slide *ngFor="let artista of artistas">

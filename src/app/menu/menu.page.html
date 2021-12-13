@@ -2,17 +2,17 @@
 <ion-split-pane  contentId="content">
   <ion-menu contentId="content" side="end">
     <ion-header>
-      <ion-toolbar>
-        <ion-title>Menú</ion-title>
-        <ion-buttons>
+      <ion-toolbar >
+        <ion-title class="ion-text-center" >Menú</ion-title>
+        <ion-buttons slot="start">
           <ion-button  (click)="closeMenu()">
-            <ion-icon name="close-outline"></ion-icon>
+            <ion-icon  name="close-outline"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list >
+      <ion-list lines="none" >
         <ion-item (click)="goToHome()">
           <ion-icon name="home-outline" slot="start"></ion-icon>
           Home
@@ -24,6 +24,23 @@
         <ion-item (click)="goToSettings()">
           <ion-icon name="settings-outline" slot="start" ></ion-icon>
           configuraciones
+        </ion-item>
+        <ion-item>
+          <ion-icon name="moon-outline" 
+                    slot="start" 
+                    *ngIf="!darkModeTheme">
+          </ion-icon>
+          <ion-icon name="sunny-outline"
+                    slot="start"
+                    *ngIf="darkModeTheme">
+          </ion-icon>
+          <ion-label  *ngIf="!darkModeTheme">Dark Mode</ion-label>
+          <ion-label  *ngIf="darkModeTheme">Light Mode</ion-label>
+          <ion-toggle slot="end"
+                      color="light" 
+                      [ngModel]="darkModeTheme"
+                      (ionChange)="darkMode()" >
+         </ion-toggle>
         </ion-item>
         <ion-item (click)="logout()">
           <ion-icon name="log-in-outline" slot="start"></ion-icon>
